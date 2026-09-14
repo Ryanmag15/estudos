@@ -36,4 +36,3 @@ php fanout/producer.php
 
 Observe: as 2 mensagens publicadas aparecem nos 3 terminais dos
 consumers.
-```

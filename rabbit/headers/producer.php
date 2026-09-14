@@ -35,6 +35,7 @@ $mensagens = [
 foreach ($mensagens as $item) {
     $msg = new AMQPMessage($item['corpo'], [
         'application_headers' => new AMQPTable($item['headers']),
+        'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT,
     ]);
 
     // Headers exchange ignora routing key -- publicamos com string vazia.

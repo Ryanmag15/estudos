@@ -23,7 +23,7 @@ echo "[{$queue}] Aguardando mensagens com routing_key='error' OU 'warning'. CTRL
 flush();
 
 $channel->basic_consume($queue, '', false, true, false, false, function ($msg) use ($queue) {
-    $routingKeyRecebida = $msg->delivery_info['routing_key'];
+    $routingKeyRecebida = $msg->getRoutingKey();
     echo "[{$queue}] routing_key='{$routingKeyRecebida}' body=\"{$msg->getBody()}\"\n";
     flush();
 });

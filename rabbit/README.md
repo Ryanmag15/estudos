@@ -21,6 +21,13 @@ quatro tipos de exchange: `direct`, `topic`, `fanout` e `headers`.
   registrados; a mensagem é copiada para toda fila cujo binding "casar".
   Se nenhum binding casar, a mensagem é descartada (ou enviada para uma
   exchange alternativa, se configurada -- fora do escopo deste lab).
+- **Por que rodar um consumer antes do producer funciona**: cada consumer
+  deste lab declara sua própria exchange/fila/binding (de forma
+  idempotente) antes de começar a ouvir -- por isso qualquer consumer
+  pode ser iniciado antes ou depois do producer, sem erro. O inverso não
+  é verdade: se o producer rodar ANTES de qualquer consumer ter criado a
+  fila e o binding, a mensagem não encontra fila nenhuma ligada e é
+  descartada silenciosamente (sem erro nenhum).
 
 ## Tipos de exchange
 
@@ -43,6 +50,10 @@ Requisitos: Docker, PHP >= 8.1, Composer.
 docker compose up -d   # sobe o RabbitMQ (aguarde alguns segundos para ele iniciar)
 composer install       # instala a php-amqplib
 ```
+
+Este `docker-compose.yml` não usa volume nomeado, então os dados (filas,
+mensagens) são efêmeros -- um `docker compose down` apaga tudo. Isso é
+aceitável (e até prático) para um laboratório de estudo.
 
 UI de management (visualizar exchanges/filas/bindings em tempo real):
 http://localhost:15672 (login `guest` / `guest`).
@@ -86,3 +97,7 @@ veja quais mensagens ele passa a receber.
 - **Fila não recebe nada**: confira se o binding do consumer bate com a
   routing key (ou headers) publicada pelo producer -- releia a tabela do
   README daquele exemplo.
+- **Rodei o producer primeiro e "não aconteceu nada"**: sem nenhum
+  consumer ter rodado ainda, não existe fila nem binding -- a mensagem é
+  publicada, não casa com binding nenhum, e é descartada. Rode pelo
+  menos um consumer do exemplo primeiro, depois o producer.

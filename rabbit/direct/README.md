@@ -6,7 +6,7 @@ key** seja **exatamente igual** à **routing key** da mensagem publicada.
 
 ## Cenário real
 
-Sistema de log: cada nível de severidade (`info`, `warning`, `error) deve
+Sistema de log: cada nível de severidade (`info`, `warning`, `error`) deve
 ir para um handler diferente (console, alerta, etc.).
 
 ## Topologia deste exemplo

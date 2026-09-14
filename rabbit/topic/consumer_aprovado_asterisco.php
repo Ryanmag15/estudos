@@ -22,7 +22,7 @@ echo "[{$queue}] Aguardando mensagens que casem com '{$bindingKey}'. CTRL+C para
 flush();
 
 $channel->basic_consume($queue, '', false, true, false, false, function ($msg) use ($queue) {
-    $routingKeyRecebida = $msg->delivery_info['routing_key'];
+    $routingKeyRecebida = $msg->getRoutingKey();
     echo "[{$queue}] routing_key='{$routingKeyRecebida}' body=\"{$msg->getBody()}\"\n";
     flush();
 });
