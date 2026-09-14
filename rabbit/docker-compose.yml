@@ -1,0 +1,7 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-estudos
+    ports:
+      - "5672:5672"   # porta AMQP (usada pelos scripts PHP)
+      - "15672:15672" # UI de management (http://localhost:15672, guest/guest)
