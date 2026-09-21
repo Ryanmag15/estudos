@@ -1,8 +1,11 @@
-# Laboratório de estudos: RabbitMQ em PHP
+# Laboratório de estudos: RabbitMQ em Python
 
 Projeto didático para entender na prática como o RabbitMQ roteia
 mensagens através de **exchanges**, **filas** e **bindings**, usando os
 quatro tipos de exchange: `direct`, `topic`, `fanout` e `headers`.
+
+Os scripts usam [pika](https://pika.readthedocs.io/en/stable/), o cliente
+AMQP 0-9-1 oficial para Python.
 
 ## Conceitos
 
@@ -44,11 +47,12 @@ exemplo.
 
 ## Setup
 
-Requisitos: Docker, PHP >= 8.1, Composer.
+Requisitos: Docker, Python >= 3.8.
 
 ```bash
-docker compose up -d   # sobe o RabbitMQ (aguarde alguns segundos para ele iniciar)
-composer install       # instala a php-amqplib
+docker compose up -d                    # sobe o RabbitMQ (aguarde alguns segundos para ele iniciar)
+python3 -m venv .venv && source .venv/bin/activate  # ambiente virtual (opcional, mas recomendado)
+pip install -r requirements.txt         # instala o pika
 ```
 
 Este `docker-compose.yml` não usa volume nomeado, então os dados (filas,
@@ -63,24 +67,24 @@ http://localhost:15672 (login `guest` / `guest`).
 Para cada pasta (`direct/`, `topic/`, `fanout/`, `headers/`):
 
 1. Abra um terminal para CADA consumer daquele exemplo e rode
-   `php <pasta>/consumer_X.php` -- eles ficam ouvindo (Ctrl+C para
+   `python3 <pasta>/consumer_X.py` -- eles ficam ouvindo (Ctrl+C para
    parar).
-2. Em outro terminal, rode `php <pasta>/producer.php`.
+2. Em outro terminal, rode `python3 <pasta>/producer.py`.
 3. Observe nos terminais dos consumers quais mensagens cada fila
    recebeu, e compare com a tabela do README daquela pasta.
 
 Exemplo (direct):
 ```bash
 # terminal 1
-php direct/consumer_info.php
+python3 direct/consumer_info.py
 # terminal 2
-php direct/consumer_warning.php
+python3 direct/consumer_warning.py
 # terminal 3
-php direct/consumer_error.php
+python3 direct/consumer_error.py
 # terminal 4
-php direct/consumer_critical.php
+python3 direct/consumer_critical.py
 # terminal 5 (publica as mensagens)
-php direct/producer.php
+python3 direct/producer.py
 ```
 
 ## Experimente

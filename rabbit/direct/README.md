@@ -29,15 +29,15 @@ ir para um handler diferente (console, alerta, etc.).
 
 Em 4 terminais separados, deixe os consumers ouvindo:
 ```bash
-php direct/consumer_info.php
-php direct/consumer_warning.php
-php direct/consumer_error.php
-php direct/consumer_critical.php
+python3 direct/consumer_info.py
+python3 direct/consumer_warning.py
+python3 direct/consumer_error.py
+python3 direct/consumer_critical.py
 ```
 
 Em um 5º terminal, publique as mensagens:
 ```bash
-php direct/producer.php
+python3 direct/producer.py
 ```
 
 Observe: `fila_info` recebe só a mensagem de info; `fila_critical` recebe

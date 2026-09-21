@@ -32,11 +32,11 @@ mesmo tempo.
 
 Em 2 terminais separados:
 ```bash
-php headers/consumer_match_all.php
-php headers/consumer_match_any.php
+python3 headers/consumer_match_all.py
+python3 headers/consumer_match_any.py
 ```
 
 Em outro terminal:
 ```bash
-php headers/producer.php
+python3 headers/producer.py
 ```

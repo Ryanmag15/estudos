@@ -39,12 +39,12 @@ substitui exatamente uma palavra e aqui há duas depois de `pedido`.
 
 Em 3 terminais separados:
 ```bash
-php topic/consumer_pedido_asterisco.php
-php topic/consumer_aprovado_asterisco.php
-php topic/consumer_pedido_hash.php
+python3 topic/consumer_pedido_asterisco.py
+python3 topic/consumer_aprovado_asterisco.py
+python3 topic/consumer_pedido_hash.py
 ```
 
 Em outro terminal:
 ```bash
-php topic/producer.php
+python3 topic/producer.py
 ```

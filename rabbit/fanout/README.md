@@ -24,14 +24,14 @@ producer não informe (ou informe) uma routing key -- ela é ignorada.
 
 Em 3 terminais separados:
 ```bash
-php fanout/consumer_email.php
-php fanout/consumer_sms.php
-php fanout/consumer_log.php
+python3 fanout/consumer_email.py
+python3 fanout/consumer_sms.py
+python3 fanout/consumer_log.py
 ```
 
 Em outro terminal:
 ```bash
-php fanout/producer.php
+python3 fanout/producer.py
 ```
 
 Observe: as 2 mensagens publicadas aparecem nos 3 terminais dos
